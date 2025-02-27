@@ -38,8 +38,8 @@ jobs:
       #   with:
       #     python-version: '3.12'
 
-      # - name: Build site
-      #   run: bash scripts/build.sh
+      - name: Build site
+        run: bash src/pdf.sh
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
