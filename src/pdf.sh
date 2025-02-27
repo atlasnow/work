@@ -46,6 +46,12 @@ unzip pdfjs.zip -d res/pdf
 ## sed -i "s|viewer.css|https://cdnjs.cloudflare.com/ajax/libs/pdf.js/$PDFJS_VER/pdf_viewer.css|g" res/pdf/web/viewer.html
 #sed -i "s|viewer.css|https://cdnjs.cloudflare.com/ajax/libs/pdf.js/$PDFJS_VER/pdf_viewer.min.css|g" res/pdf/web/viewer.html
 
+# allow origin
+# sed -i 's|const HOSTED_VIEWER_ORIGINS = \[|const HOSTED_VIEWER_ORIGINS = \["https://github.com", "https://atlasnow.github.io", "https://objects.githubusercontent.com", "https://raw.githubusercontent.com", |g' res/pdf/web/viewer.mjs
+# does not work
+
+sed -i 's|if (fileOrigin !== viewerOrigin) {|{// skip origin check 01|g' res/pdf/web/viewer.mjs
+sed -i 's|throw new Error("file origin|// skip origin check 02|g' res/pdf/web/viewer.mjs
 
 # now we can remove the zip file
 rm pdfjs.zip
